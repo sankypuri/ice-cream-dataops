@@ -1,0 +1,50 @@
+name: Deploy Toolkit
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ice-cream-dataops/**
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.11'
+  # Change the TOOLKIT_VERSION depending on which version you are using
+  TOOLKIT_VERSION: '0.5.30'
+jobs:
+  build-modules:
+    strategy:
+      matrix:
+        environment:
+           - test
+           - prod
+    environment: ${{ matrix.environment }}
+    runs-on: ubuntu-latest
+    env:
+      LOGIN_FLOW: client_credentials
+      CDF_CLUSTER: westeurope-1
+      # You need to replace the number in CDF_PROJECT with your own CDF project number
+      CDF_PROJECT: cdf-bootcamp-48-${{ matrix.environment }}
+      IDP_TOKEN_URL: https://login.microsoftonline.com/16e3985b-ebe8-4e24-9da4-933e21a9fc81/oauth2/v2.0/token
+      IDP_TENANT_ID: 16e3985b-ebe8-4e24-9da4-933e21a9fc81
+
+      IDP_CLIENT_ID: ${{ vars.IDP_CLIENT_ID }}
+      IDP_CLIENT_SECRET: ${{ secrets.IDP_CLIENT_SECRET }}
+
+      DATA_PIPELINE_OEE_CLIENT_ID: ${{ vars.DATA_PIPELINE_OEE_CLIENT_ID }}
+      DATA_PIPELINE_OEE_CLIENT_SECRET: ${{ secrets.DATA_PIPELINE_OEE_CLIENT_SECRET }}
+      ICAPI_EXTRACTORS_CLIENT_ID: ${{ vars.ICAPI_EXTRACTORS_CLIENT_ID }}
+      ICAPI_EXTRACTORS_CLIENT_SECRET: ${{ secrets.ICAPI_EXTRACTORS_CLIENT_SECRET }}
+
+    name: Build & Deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Cognite Toolkit
+        run: pip install cognite-toolkit==${{ env.TOOLKIT_VERSION }}
+      - name: Build Toolkit Configurations
+        run: cdf build --env=${{ matrix.environment }}
+      - name: Deploy Toolkit Configurations
+        run: cdf deploy --env=${{ matrix.environment }}
