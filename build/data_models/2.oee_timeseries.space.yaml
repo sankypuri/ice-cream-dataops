@@ -1,0 +1,4 @@
+space: oee_ts_space
+name: OEE Timeseries Space
+description: Space for the calculations of the OEE including Availability Quality,
+  Performance, Off_spec and OEE

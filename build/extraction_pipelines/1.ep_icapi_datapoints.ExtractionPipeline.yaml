@@ -1,0 +1,5 @@
+externalId: ep_icapi_datapoints
+name: Ice Cream API Data Points
+description: Data Points source extraction pipeline for the Ice Cream API
+source: Ice Cream API
+dataSetExternalId: ds_icapi

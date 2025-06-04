@@ -1,0 +1,3 @@
+externalId: wf_icapi_data_pipeline
+description: A workflow for processing data
+dataSetExternalId: ds_workflow_data

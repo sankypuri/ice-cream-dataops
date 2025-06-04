@@ -1,0 +1,9 @@
+externalId: ICAPI Time series
+mapping:
+  expression: 'input.map(row => { "type": "node", "space": "icapi_dm_space", "externalId":
+    row.external_id, "view": { "externalId": "CogniteTimeSeries", "space": "cdf_cdm",
+    "version": "v1" }, "properties": { "type": "numeric", "description": row.description,
+    "isStep": row.is_step, "name": row.external_id}})'
+input:
+  type: json
+published: true

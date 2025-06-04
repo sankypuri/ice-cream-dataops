@@ -1,0 +1,4 @@
+externalId: ICAPI Time series
+credentials:
+  clientId: ${ICAPI_EXTRACTORS_CLIENT_ID}
+  clientSecret: ${ICAPI_EXTRACTORS_CLIENT_SECRET}

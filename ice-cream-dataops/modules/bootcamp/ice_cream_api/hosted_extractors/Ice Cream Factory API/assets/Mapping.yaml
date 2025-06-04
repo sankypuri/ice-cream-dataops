@@ -1,0 +1,13 @@
+externalId: ICAPI Assets
+mapping:
+   expression: 'input.map(row => {
+      "type": "raw_row",
+      "table": "assets",
+      "database": "ice-cream-factory-db",
+      "key": row.external_id,
+      "columns": row
+      })'
+input:
+   type: csv
+   delimiter: ','
+published: true

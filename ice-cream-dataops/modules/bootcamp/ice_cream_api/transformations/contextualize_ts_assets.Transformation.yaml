@@ -1,0 +1,19 @@
+externalId: contextualize_ts_assets
+name: Contextualize TimeSeries and Assets
+destination:
+  dataModel:
+    space: cdf_cdm
+    externalId: CogniteCore
+    version: v1
+    destinationType: CogniteTimeSeries
+  type: instances
+ignoreNullFields: true
+conflictMode: upsert
+# Specify credentials separately like this:
+# You can also use different credentials for running the transformations than the credentials you use to deploy.
+authentication:
+  clientId: {{ icapi_extractors_client_id }}
+  clientSecret: {{ icapi_extractors_client_secret }}
+  tokenUri: {{ tokenUri }}
+  cdfProjectName: {{ cdfProjectName }}
+  scopes: {{ scopes }}

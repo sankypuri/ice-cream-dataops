@@ -1,0 +1,21 @@
+externalId: create_asset_hierarchy
+name: Create Cognite Asset Hierarchy
+destination:
+  dataModel:
+    space: cdf_cdm
+    externalId: CogniteCore
+    version: v1
+    destinationType: CogniteAsset
+  instanceSpace: icapi_dm_space
+  type: instances
+ignoreNullFields: true
+isPublic: true
+conflictMode: upsert
+# Specify credentials separately like this:
+# You can also use different credentials for running the transformations than the credentials you use to deploy.
+authentication:
+  clientId: {{ icapi_extractors_client_id }}
+  clientSecret: {{ icapi_extractors_client_secret }}
+  tokenUri: {{ tokenUri }}
+  cdfProjectName: {{ cdfProjectName }}
+  scopes: {{ scopes }}

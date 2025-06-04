@@ -1,0 +1,16 @@
+workflowExternalId: wf_icapi_data_pipeline
+version: '1'
+workflowDefinition:
+  tasks:
+  - externalId: icapi_datapoints_extractor_task
+    type: function
+    parameters:
+      function:
+        externalId: icapi_datapoints_extractor
+        data:
+          hours: 1
+    retries: 3
+    timeout: 3600
+    onFailure: abortWorkflow
+    dependsOn:
+    - externalId: contextualize_ts_assets_task

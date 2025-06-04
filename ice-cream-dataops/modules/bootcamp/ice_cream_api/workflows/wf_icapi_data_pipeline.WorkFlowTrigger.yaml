@@ -1,0 +1,9 @@
+externalId: icapi_trigger
+triggerRule:
+  triggerType: schedule
+  cronExpression: '*/15 * * * *'
+workflowExternalId: wf_icapi_data_pipeline
+workflowVersion: '1'
+authentication:
+  clientId: {{ icapi_trigger_client_id }}
+  clientSecret: {{ icapi_trigger_client_secret }}

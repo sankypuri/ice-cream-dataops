@@ -1,0 +1,61 @@
+name: data_pipeline_oee.Group
+sourceId: {{ data_pipeline_oee_source_id }}
+capabilities:
+  - datasetsAcl:
+      actions: [READ]
+      scope:
+        idScope:
+          ids: [{{ icapi_ds_external_id }}]
+  - extractionPipelinesAcl:
+      actions: [READ]
+      scope:
+        datasetScope:
+          ids: [{{ icapi_ds_external_id }}]
+  - extractionRunsAcl:
+      actions: [READ, WRITE]
+      scope:
+        datasetScope:
+          ids: [{{ icapi_ds_external_id }}]
+  - filesAcl:
+      actions: [READ, WRITE]
+      scope:
+        datasetScope:
+          ids: [{{ icapi_ds_external_id }}]
+  - functionsAcl:
+      actions: [READ, WRITE]
+      scope:
+        all: {}
+  - groupsAcl:
+      actions: [LIST, READ]
+      scope:
+        currentuserscope: {}
+  - projectsAcl:
+      actions: [LIST, READ]
+      scope:
+        all: {}
+  - rawAcl:
+      actions: [LIST, READ, WRITE]
+      scope:
+        tableScope:
+          dbsToTables:
+            ice-cream-factory-db: [assets]
+  - sessionsAcl:
+      actions: [LIST, CREATE, DELETE]
+      scope:
+        all: {}
+  - timeSeriesAcl:
+      actions: [READ, WRITE]
+      scope:
+        all: {}
+  - transformationsAcl:
+      actions: [READ, WRITE]
+      scope:
+        all: {}
+  - dataModelsAcl:
+      actions: [READ, WRITE]
+      scope:
+        all: {}
+  - dataModelInstancesAcl:
+      actions: [READ, WRITE]
+      scope:
+        all: {} 
